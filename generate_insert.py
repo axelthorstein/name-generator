@@ -3,6 +3,36 @@
 import itertools
 import random
 
+def generate_name_JSON(file_name):
+	""" () -> NoneType
+
+	Create a file of SQL Insert statements for each name in the given list,
+	for a specific gender and country. For each name assign 3 attributes
+	so that they are evenly distributed among names. 
+	"""
+	input_file = open(file_name, 'r')
+	output_file = open("names.JSON", 'w+')
+
+	names = input_file.readlines()
+
+	output_file.write("{\"names\": [")
+
+	for name in names:
+		split_name = name.split();
+		output_file.write("{")
+		output_file.write("\"name\":\"{0}\",\"nick_name\":\"{1}\",\"attributes\":\"{2}\"".format(split_name[0], split_name[1], split_name[2]))
+		output_file.write("}")
+		if (name != names[-1]):
+			output_file.write(",")
+
+
+	output_file.write("]}")
+
+	input_file.close()
+	output_file.close()
+
+
+
 def generate_SQL_insert_random(file_name, gender, country_code, attributes):
 	""" (str, str, str, list of str) -> NoneType
 
@@ -123,8 +153,9 @@ def create_bio(names, attributes):
 
 if __name__=="__main__":
 	#generate_SQL_insert_random('fill_names.txt', 'M', 'NA', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'])
-	generate_SQL_insert_chosen('fill_names.txt', 'M', 'NA')
-	for i in create_bio(['Billy Bill', 'Howard', 'Oscar'], 'AEG'):
-		print(i)
+	generate_name_JSON("fill_names.txt")
+	#generate_SQL_insert_chosen('fill_names.txt', 'M', 'NA')
+	#for i in create_bio(['Billy Bill', 'Howard', 'Oscar'], 'AEG'):
+	#	print(i)
 
 

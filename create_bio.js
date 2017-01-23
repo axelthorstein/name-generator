@@ -1,11 +1,85 @@
 function printBios() {
 
-    var bios = createBio(['Billy Bill', 'Howard', 'Oscar'], 'AEG');
+    var gender = getInputValue("gender");
+    var country = getInputValue("country");
+    var attributes = getAttributeString();
+    var names = getNames(gender, country, attributes);
+
+    var bios = createBio(['Billy Bill', 'Howard', 'Oscar'], attributes);
 
     for (i = 0; i < 3; i++) {
-    	document.getElementById("message"+(i+1).toString()).innerHTML = bios[i];
-        console.log(bios[i])
+    	document.getElementById("message" + (i + 1).toString()).innerHTML = bios[i];
+        console.log(bios[i]);
     }
+
+}
+
+function getNames(gender, country, attributes) {
+    loadJSON('names.JSON',
+        function(data) { console.log(data); },
+        function(xhr) { console.error(xhr); }
+    );
+}
+
+function loadJSON(path, success, error)
+{
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                if (success)
+                    success(JSON.parse(xhr.responseText));
+            } else {
+                if (error)
+                    error(xhr);
+            }
+        }
+    };
+    xhr.open("GET", path, true);
+    xhr.send();
+}
+
+function getCheckedAttributes() {
+
+    var checkedValues = [];
+    var inputElements = document.getElementsByClassName('messageCheckbox');
+    for (var i = 0; i < inputElements.length; i++) {
+        if (inputElements[i].checked) {
+            checkedValues.push(inputElements[i].value);
+        }
+    }
+
+    return checkedValues;
+}
+
+function getAttributeString() {
+
+    var attributes = getCheckedAttributes();
+    var randNums = [];
+
+    if (attributes.length > 2) {
+        while (randNums.length < 3) {
+            var randNum = Math.floor(Math.random() * attributes.length);
+            if (!randNums.includes(randNum)) {
+                randNums.push(randNum)
+            }
+        }
+    }
+    randNums.sort();
+
+    attributesString = attributes[randNums[0]] + attributes[randNums[1]] + attributes[randNums[2]];
+
+    console.log(attributesString);
+
+    return attributesString;
+}
+
+function getInputValue(inputType) {
+
+    var inputValue = document.forms["attributeForm"].elements[inputType].value;
+
+    return inputValue;
 }
 
 function createBio(names, attributes) {

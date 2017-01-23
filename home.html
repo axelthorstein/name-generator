@@ -15,7 +15,7 @@
 	</head>
 
 	<body>
-		<form>
+		<form name="attributeForm">
 		  <p> Select your gender: </p>
 		  <input type="radio" name="gender" value="M" checked> Male<br>
  		  <input type="radio" name="gender" value="F"> Female<br>
@@ -23,15 +23,15 @@
  		  <input type="radio" name="country" value="NA" checked> North America<br>
  		  <input type="radio" name="country" value="IS"> Iceland<br>
 		  <p> Select three attributes that describe you most: </p>
-		  <input type="checkbox" name="attribute[]" id="attribute" value="A"> Rebellious<br>
-		  <input type="checkbox" name="attribute[]" id="attribute" value="B"> Low-key<br>
-		  <input type="checkbox" name="attribute[]" id="attribute" value="C"> Simple<br>
-		  <input type="checkbox" name="attribute[]" id="attribute" value="D"> Clever<br>
-		  <input type="checkbox" name="attribute[]" id="attribute" value="E"> Introverted<br>
-		  <input type="checkbox" name="attribute[]" id="attribute" value="F"> Extroverted<br>
-		  <input type="checkbox" name="attribute[]" id="attribute" value="G"> Bold<br>
-		  <input type="checkbox" name="attribute[]" id="attribute" value="H"> Funny<br>
-		  <input type="button" value="Submit" onClick="printBios()">
+		  <input class="messageCheckbox" type="checkbox" name="attribute[]" id="attribute" value="A"> Rebellious<br>
+		  <input class="messageCheckbox" type="checkbox" name="attribute[]" id="attribute" value="B"> Low-key<br>
+		  <input class="messageCheckbox" type="checkbox" name="attribute[]" id="attribute" value="C"> Simple<br>
+		  <input class="messageCheckbox" type="checkbox" name="attribute[]" id="attribute" value="D"> Clever<br>
+		  <input class="messageCheckbox" type="checkbox" name="attribute[]" id="attribute" value="E"> Introverted<br>
+		  <input class="messageCheckbox" type="checkbox" name="attribute[]" id="attribute" value="F"> Extroverted<br>
+		  <input class="messageCheckbox" type="checkbox" name="attribute[]" id="attribute" value="G"> Bold<br>
+		  <input class="messageCheckbox" type="checkbox" name="attribute[]" id="attribute" value="H"> Funny<br>
+		  <input class="messageCheckbox" type="button" value="Submit" onClick="printBios()">
 		</form>
 		<p id="message1"></p>
 		<p id="message2"></p>
