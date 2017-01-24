@@ -92,6 +92,8 @@ function getAttributeString() {
                 randNums.push(randNum)
             }
         }
+    } else {
+        window.alert("You must pick at least three attributes!");
     }
     randNums.sort();
 
