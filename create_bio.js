@@ -5,13 +5,12 @@ function printBios() {
     var attributes = getAttributeString();
     var names = createNameStrings(attributes);
 
-    console.log(names);
-
     var bios = createBio(names, attributes);
 
     for (i = 0; i < 3; i++) {
+        document.getElementById("container" + (i + 1).toString()).className = document.getElementById("container" + (i + 1).toString()).className.replace
+      ( /(?:^|\s)transparent(?!\S)/g , '' )
     	document.getElementById("message" + (i + 1).toString()).innerHTML = bios[i];
-        console.log(bios[i]);
     }
 
 }

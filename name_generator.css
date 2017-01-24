@@ -21,6 +21,10 @@ p.r {
   padding: 5%;
 }
 
+.transparent {
+  opacity: 0;
+}
+
 /* CUSTOM RADIO & CHECKBOXES
    http://stackoverflow.com/a/17541916/383904 */
 .rad {
