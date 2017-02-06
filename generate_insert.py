@@ -83,15 +83,27 @@ def generate_SQL_insert_chosen(file_name, gender, country_code):
 	input_file.close()
 	output_file.close()
 
+def split_names(names):
+	""" (list) -> str
+
+	Create a bio using the chosen name and attributes.
+	"""
+	split_names = []
+
+	for name in names:
+		split_names.append(name.split(' '))
+
+	return names
+
 
 def create_bio(names, attributes):
 	""" (str, str) -> str
 
 	Create a bio using the chosen name and attributes.
 	"""
-	new_names = []
-	for i in names:
-		new_names.append(i.split(' '))
+
+	names = split_names(names)
+
 
 	attribute_names = {'A': 'rebellious', 'B': 'low-key', 'C': 'simple', 'D': 'clever', 'E': 'introverted', 'F': 'extroverted', 'G': 'bold', 'H': 'funny'}
 
@@ -135,11 +147,11 @@ def create_bio(names, attributes):
 		second_pick = random.choice(attribute_sentences[attributes_list[1]])
 		third_pick = random.choice(attribute_sentences[attributes_list[2]])
 
-		bio = bio_format.format(new_names[i][0], first_pick, second_pick, third_pick)
+		bio = bio_format.format(names[i][0], first_pick, second_pick, third_pick)
 
-		if len(new_names[i]) == 2:
+		if len(names[i]) == 2:
 			bio.strip()
-			nick_name = nickname_sentence.format(new_names[i][0], new_names[i][1])
+			nick_name = nickname_sentence.format(names[i][0], names[i][1])
 			bio += nick_name
 
 
@@ -153,9 +165,9 @@ def create_bio(names, attributes):
 
 if __name__=="__main__":
 	#generate_SQL_insert_random('fill_names.txt', 'M', 'NA', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'])
-	generate_name_JSON("fill_names.txt")
+	#generate_name_JSON("fill_names.txt")
 	#generate_SQL_insert_chosen('fill_names.txt', 'M', 'NA')
-	#for i in create_bio(['Billy Bill', 'Howard', 'Oscar'], 'AEG'):
-	#	print(i)
+	for i in create_bio(['Billy Bill', 'Howard', 'Oscar'], 'AEG'):
+		print(i)
 
 
